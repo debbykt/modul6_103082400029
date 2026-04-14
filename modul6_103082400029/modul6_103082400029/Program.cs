@@ -30,6 +30,22 @@ class Program
         user.PrintAllVideoPlaycount();
         Console.WriteLine("Total Play Count: " + user.GetTotalVideoPlayCount());
 
+        try
+        {
+            SayaTubeVideo errorVideo = new SayaTubeVideo(null);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        SayaTubeVideo test = new SayaTubeVideo("Test Overflow");
+
+        for (int i = 0; i < 100000; i++)
+        {
+            test.IncreasePlayCount(25000000);
+        }
+
     }
 
 }
