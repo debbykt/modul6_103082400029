@@ -8,7 +8,7 @@ namespace modul6_103082400029
         {
             Console.WriteLine("=== OUTPUT NORMAL ===\n");
 
-            SayaTubeUser user = new SayaTubeUser("NamaKamu");
+            SayaTubeUser user = new SayaTubeUser("Debby");
 
             string[] filmList = {
                 "Avengers",
@@ -25,13 +25,13 @@ namespace modul6_103082400029
 
             foreach (var film in filmList)
             {
-                SayaTubeVideo video = new SayaTubeVideo($"Review Film {film} oleh NamaKamu");
+                SayaTubeVideo video = new SayaTubeVideo($"Review Film {film} oleh Debby");
                 video.IncreasePlayCount(1000);
                 user.AddVideo(video);
             }
 
             user.PrintAllVideoPlaycount();
-            Console.WriteLine("\nTotal Play Count: " + user.GetTotalVideoPlayCount());
+            Console.WriteLine("\nTotal Play Count : " + user.GetTotalVideoPlayCount());
 
 
             Console.WriteLine("\n=== TEST ERROR ===\n");
@@ -42,7 +42,7 @@ namespace modul6_103082400029
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error (judul null): " + e.Message);
+                Console.WriteLine("Error (judul null) : " + e.Message);
             }
 
             try
