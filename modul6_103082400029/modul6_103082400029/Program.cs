@@ -1,49 +1,68 @@
-﻿using modul6_103082400029;
-using System;
+﻿using System;
 
-class Program
+namespace modul6_103082400029
 {
-    static void Main(string[] args)
+    class Program
     {
-        SayaTubeUser user = new SayaTubeUser("NamaKamu");
-
-        string[] filmList = {
-            "Avengers",
-            "Inception",
-            "Interstellar",
-            "The Dark Knight",
-            "Parasite",
-            "Joker",
-            "Titanic",
-            "Forrest Gump",
-            "The Matrix",
-            "Harry Potter"
-        };
-
-        foreach (var film in filmList)
+        static void Main(string[] args)
         {
-            SayaTubeVideo video = new SayaTubeVideo($"Review Film {film} oleh NamaKamu");
-            video.IncreasePlayCount(1000);
-            user.AddVideo(video);
-        }
+            Console.WriteLine("=== OUTPUT NORMAL ===\n");
 
-        user.PrintAllVideoPlaycount();
-        Console.WriteLine("Total Play Count: " + user.GetTotalVideoPlayCount());
+            SayaTubeUser user = new SayaTubeUser("NamaKamu");
 
-        try
-        {
-            SayaTubeVideo errorVideo = new SayaTubeVideo(null);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
+            string[] filmList = {
+                "Avengers",
+                "Inception",
+                "Interstellar",
+                "The Dark Knight",
+                "Parasite",
+                "Joker",
+                "Titanic",
+                "Forrest Gump",
+                "The Matrix",
+                "Harry Potter"
+            };
 
-        SayaTubeVideo test = new SayaTubeVideo("Test Overflow");
+            foreach (var film in filmList)
+            {
+                SayaTubeVideo video = new SayaTubeVideo($"Review Film {film} oleh NamaKamu");
+                video.IncreasePlayCount(1000);
+                user.AddVideo(video);
+            }
 
-        for (int i = 0; i < 100000; i++)
-        {
-            test.IncreasePlayCount(25000000);
+            user.PrintAllVideoPlaycount();
+            Console.WriteLine("\nTotal Play Count: " + user.GetTotalVideoPlayCount());
+
+
+            Console.WriteLine("\n=== TEST ERROR ===\n");
+
+            try
+            {
+                SayaTubeVideo errorVideo = new SayaTubeVideo(null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error (judul null): " + e.Message);
+            }
+
+            try
+            {
+                SayaTubeVideo video2 = new SayaTubeVideo("Test Video");
+                video2.IncreasePlayCount(-10);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error (playcount negatif): " + e.Message);
+            }
+
+            SayaTubeVideo testOverflow = new SayaTubeVideo("Test Overflow");
+
+            for (int i = 0; i < 100; i++)
+            {
+                testOverflow.IncreasePlayCount(25000000);
+            }
+
+            Console.WriteLine("\n=== SELESAI ===");
         }
 
     }
